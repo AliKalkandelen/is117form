@@ -1,0 +1,101 @@
+<html>
+<head>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<style style="css">
+#commentForm label.error {
+       color: #FB3A3A;
+       display: inline-block;
+       margin: 4px 0 5px 125px;
+       padding:0;
+       text-align: left;
+       width: 220px;
+       }
+
+
+
+</style>
+
+  
+ 
+</head>
+<body>
+<form class="is117form" id="commentForm" method="get" action="">
+  <fieldset>
+      <legend>Please provide your name, email address (won't be published) and
+      a comment</legend>
+          <p> 
+	  <label for="cname">Name (required, at least 2 characters)</label>
+          <input id="cname" name="name" minlength="2" type="text" required/>
+	  </p> 
+	<p>
+	    <label for="cemail">E-Mail(required)</label> 
+	    <input id="cemail" type="email" name="email" required/>
+	</p>
+	      <p>
+	        <label for="curl">URL(optional)</label>
+		<input id="curl" type="url" name="url"/>
+	     </p>
+      <p>
+            <label for="ccomment">Your comment (required)</label>
+	    <textarea  id="ccomment" name="comment" required></textarea>
+      </p>
+
+        <p> 
+	       <input class="submit" type="submit" value="Submit"/>   </p>
+	 </fieldset>
+	 </form>
+	     <script>
+
+	     (function($,W,D)
+	     {
+		$(D).ready(function($){
+		
+		var IS117FORM = {};
+
+		IS117FORM.UTIL=
+		{
+
+		setupFormValidation: function()
+		{
+		$("#commentForm").validate({
+		
+		   rules: {
+
+		   name: "required",
+		   email: { 
+		         required: true,
+			 email: true
+			 },
+		   url: {
+		        url:true,
+		   },
+		   comment: {
+		          required:true,
+			  maxlength: 1000,
+		 },
+
+		 messages: {
+		     name: "Please enter your name",
+		     email: "Please enter a valid email adress",
+		     url: "Please enter a valid url adress",
+		     comment: "Please enter your comment",
+		 },
+
+		 submitHandler: function(form){
+		      form.submit();
+		 }
+
+		}
+		});
+		}
+		}
+
+		})(jQuery, window, document);
+		IS117FORM.UTIL.setupFormValidation();
+		});
+	</script>
+	</body>
+
+	</html>
